@@ -1,0 +1,11 @@
+!noci
+
+lib/Foswiki/Contrib/DashboardContrib.pm  Perl module 
+
+data/Main/PersonalInfoWidget.txt
+data/Main/MyTasksWidget.txt
+data/Main/UserFormViewTemplate.txt
+data/Main/MyFeaturesWidget.txt
+data/Main/ChangesWidget.txt
+data/System
+data/System/DashboardContrib.txt

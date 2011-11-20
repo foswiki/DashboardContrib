@@ -1,0 +1,17 @@
+%STARTSECTION{"widget"}%
+<div>
+%SEARCH{
+type="query"
+"(CurrentState='New' OR CurrentState='Confirmed' OR CurrentState='Waiting for Feedback' OR CurrentState='Being Worked On' OR CurrentState='Needs Merge' OR CurrentState='Proposal Required') AND WaitingFor~'*%BASETOPIC%*'" 
+web="Tasks"
+topic="Item*"
+order="modified"
+nonoise="on" nototal="off"
+reverse="on"
+pager="on"
+pagesize="5"
+header="| *Task* | *State* |"
+format="| [[$web.$topic][$topic]] - $percntENCODE{\"$formfield(Summary)\" type=\"quote\"}$percnt | $formfield(CurrentState) |"
+}%
+</div>
+%ENDSECTION{"widget"}%

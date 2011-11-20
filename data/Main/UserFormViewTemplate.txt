@@ -1,0 +1,29 @@
+%TMPL:INCLUDE{view}%
+
+%{
+user topic has a formfield of the form ''
+
+I wonder if the widgets should be in their own web?
+}%
+
+%TMPL:DEF{"content"}%
+<style>
+.userFormWidget {
+  width: 30%;
+  float: left;
+  margin: 12px;
+  padding: 6px;
+  border: 1px solid darkblue;
+}
+</style>
+---++ testing this form view.
+%FORMAT{
+  "MyFeatures,MyTasks,Changes,PersonalInfo"
+  type="string"
+  format="<div class=\"userFormWidget jqCorner\"><span><h4>$item</h4></span>$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt</div>$n"
+  BUGheader="---+++ header\n" 
+  footer="<span class=\"foswikiReset\"> </span>$n---+++ footer$n" 
+  separator=","
+}%
+
+%TEXT% %TMPL:END%
