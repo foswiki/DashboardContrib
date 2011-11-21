@@ -23,7 +23,7 @@ I wonder if the widgets should be in their own web?
   format="<div class=\"userFormWidget jqCorner\"><span><h4>$item</h4></span>$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt</div>$n"
   BUGheader="---+++ header\n" 
   footer="<span class=\"foswikiReset\"> </span>$n---+++ footer$n" 
-  separator=","
+  separator=""
 }%
 
 %TEXT% %TMPL:END%
