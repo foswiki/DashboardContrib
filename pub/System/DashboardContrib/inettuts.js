@@ -140,15 +140,24 @@ var iNettuts = {
             settings = this.settings,
             $sortableItems = (function () {
                 var notSortable = '';
-                $(settings.widgetSelector,$(settings.columns)).each(function (i) {
+                $(settings.widgetSelector).each(function (i) {
                     if (!iNettuts.getWidgetSettings(this.id).movable) {
                         if(!this.id) {
                             this.id = 'widget-no-id-' + i;
                         }
+                        if (notSortable == '') {
+                          notSortable = '> li:not(';
+                        }
                         notSortable += '#' + this.id + ',';
                     }
                 });
-                return $('> li:not(' + notSortable + ')', settings.columns);
+                /* would it not be better to use the selection above, and to remove elements from it if move is off? */
+                if (notSortable != '') {
+                  notSortable += ')';
+                  return $(notSortable, settings.columns);
+                }
+                return $(settings.widgetSelector);
+
             })();
         
         $sortableItems.find(settings.handleSelector).css({
