@@ -1,5 +1,4 @@
 %STARTSECTION{"widget"}%
-<div>
 | *Topic Summary CurrentState* |
 %SEARCH{ 
   "form.name='ChangeProposalForm' AND CommittedDeveloper~'*%BASETOPIC%*'"  
@@ -11,6 +10,4 @@
   pagesize="5"
   format="| [[$topic]]: $formfield(TopicSummary) : <nop>$formfield(CurrentState) |"
   NOfooter="| | | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt |  | $n "
-}%
-</div>
-%ENDSECTION{"widget"}%
+}%%ENDSECTION{"widget"}%

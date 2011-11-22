@@ -1,0 +1,3 @@
+%STARTSECTION{"widget"}%
+%INCLUDE{%BASEWEB%.%BASETOPIC%}%
+%ENDSECTION{"widget"}%

@@ -1,5 +1,4 @@
 %STARTSECTION{"widget"}%
-<div>
 %TABLE{sort="on" initsort="1" initdirection="up" headerrows="1" tablewidth="100%"}%
 %SEARCH{
     "info.author!='WikiGnome'"
@@ -19,6 +18,4 @@
     groupby="none"
     date="%URLPARAM{"since" default="P1d/$now"}%"
     zeroresults="<p>%MAKETEXT{"No changes"}%</p>"
-}%
-</div>
-%ENDSECTION{"widget"}%
+}%%ENDSECTION{"widget"}%

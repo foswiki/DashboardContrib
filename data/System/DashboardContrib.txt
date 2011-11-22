@@ -8,18 +8,45 @@ One line description, required for extensions repository catalog.
 
 %TOC%
 
+This Extension adds a Widget based dashboard to your user's home pages.
+
+Users can Add, remove, move premade, or self developed Widget topic results like Task List, Site Changes, Calendars etc.
+
+I've always wanted a user topic that was useful to me day to day, and this might be it.
+
+---+++ roadmap
+---++++ v0.1 - start
+done - ugly, hardcoded ViewTemplate that includes a number of Widgets topics
+---++++ v0.2 - prettify and add more widgets
+done - using html, css and js from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/
+js is broken, but :)
+---++++ v0.3 - add UI and backend to save user changes
+---++++ v0.4 - add parameters and options the user can set for each widget.
+---++++ more todos 
+   * Widgets form with an edit template to help people create new ones
+   * view widgets form template should show the widget.. and docco (and an add button)
+   * add section to the topic for title, colour?, so that cna be customised
+
+---+++ details.
+Widgets are defined in the Main web __TODO__ as topics ending in =Widget=.
+
+The ViewTemplate iterates over the list of widgets and adds them to the topic.
+
+
+__TODO__ howto mark certain widgets need certain plugins? (just use IF{}?)
+
 ---++ Installation
 %$INSTALL_INSTRUCTIONS%
 
 ---++ Info
 
 |  Author: | SvenDowideit |
-|  Copyright &copy;: | <!-- e.g. "2011, SlobSoft Gmbh, All Rights Reserved" --> |
-|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Copyright &copy;: | 2011 SvenDowideit@fosiki.com |
+|  License: | GPL3 or later ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License 3]]) |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  1.0.0 (XX Mmm 20XX): | Initial version |
+|  0.2.0 (22 Nov 2011): | Initial version |
 |  Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Support: | http://foswiki.org/Support/%TOPIC% |
 

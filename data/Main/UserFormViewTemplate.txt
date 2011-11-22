@@ -4,26 +4,89 @@
 user topic has a formfield of the form ''
 
 I wonder if the widgets should be in their own web?
+
+
+stealing from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/ for v0.2
+    <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-personalized-1.6rc2.min.js"></script>
+
 }%
 
-%TMPL:DEF{"content"}%
-<style>
-.userFormWidget {
-  width: 30%;
-  float: left;
-  margin: 12px;
-  padding: 6px;
-  border: 1px solid darkblue;
-}
-</style>
----++ testing this form view.
-%FORMAT{
-  "MyFeatures,MyTasks,Changes,PersonalInfo"
+%TMPL:DEF{"widgetsColumn1"}%MyFeatures,MyTasks%TMPL:END%
+%TMPL:DEF{"widgetsColumn2"}%Changes,PersonalInfo%TMPL:END%
+%TMPL:DEF{"widgetsColumn3"}%Calendar,TopicText%TMPL:END%
+
+%TMPL:DEF{"widgets_boilerplate"}%            <li class=\"widget color-blue\" id=\"$item_$index\">
+                <div class=\"widget-head\">
+                    <h3>$item</h3>
+                </div>
+                <div class=\"widget-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt               </div>
+            </li>%TMPL:END%
+
+
+%{
+---------------------------------------------------
+	Macro for including JavaScript files from system paths
+	Takes as arguments:
+		- id
+		- file url, must NOT include .css extension
+		- requires
+---------------------------------------------------
+}%
+%TMPL:DEF{"LIBJS"}%%ADDTOZONE{
+	"script"
+	id="%id%"
+	text="<script type='text/javascript' src='%PUBURLPATH%/%SYSTEMWEB%/%id%%FWSRC%.js'></script>"
+	requires="%requires%"
+}%%TMPL:END%%{
+---------------------------------------------------
+	Macro for including CSS files from *system* paths
+	Takes as arguments:
+		- id
+		- file url, must NOT include .css extension
+		- requires
+---------------------------------------------------
+}%%TMPL:DEF{"LIBCSS"}%%ADDTOZONE{
+	"head"
+	id="%id%"
+	text="<link rel='stylesheet' href='%PUBURLPATH%/%SYSTEMWEB%/%id%%FWSRC%.css' />"
+	requires="%requires%"
+}%%TMPL:END%
+
+%TMPL:DEF{"content"}%%TMPL:P{
+  "LIBCSS" id="DashboardContrib/inettuts" FWSRC=""
+}%%TMPL:P{
+  "LIBCSS" id="DashboardContrib/inettuts.js" FWSRC="" requires="DashboardContrib/inettuts"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.widget" requires="JQUERYPLUGIN::FOSWIKI"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.mouse" requires="JQueryPlugin/ui/jquery.ui.widget"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.sortable" requires="JQueryPlugin/ui/jquery.ui.mouse"
+}%%TMPL:P{
+  "LIBJS" id="DashboardContrib/inettuts" FWSRC="" requires="JQueryPlugin/ui/jquery.ui.sortable"
+}%
+    <div id="columns">
+        <ul id="column1" class="column">%FORMAT{
+  "%TMPL:P{"widgetsColumn1"}%"
   type="string"
-  format="<div class=\"userFormWidget jqCorner\"><span><h4>$item</h4></span>$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt</div>$n"
-  BUGheader="---+++ header\n" 
-  footer="<span class=\"foswikiReset\"> </span>$n---+++ footer$n" 
+  format="%TMPL:P{"widgets_boilerplate"}%"
   separator=""
 }%
-
-%TEXT% %TMPL:END%
+        </ul>
+        <ul id="column2" class="column">%FORMAT{
+  "%TMPL:P{"widgetsColumn2"}%"
+  type="string"
+  format="%TMPL:P{"widgets_boilerplate"}%"
+  separator=""
+}%
+        </ul>
+        <ul id="column3" class="column">%FORMAT{
+  "%TMPL:P{"widgetsColumn3"}%"
+  type="string"
+  format="%TMPL:P{"widgets_boilerplate"}%"
+  separator=""
+}%
+        </ul>
+    </div>
+%TMPL:END%

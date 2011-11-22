@@ -1,5 +1,4 @@
-%STARTSECTION{"widget"}%
-<div>
-%INCLUDE{"PersonalInfo" section="personalInfo"}%
-</div>
-%ENDSECTION{"widget"}%
+%STARTSECTION{"widget"}%%INCLUDE{
+  "PersonalInfo" 
+  section="personalInfo"
+}%%ENDSECTION{"widget"}%

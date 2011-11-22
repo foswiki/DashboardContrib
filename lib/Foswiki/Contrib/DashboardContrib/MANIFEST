@@ -7,5 +7,10 @@ data/Main/MyTasksWidget.txt
 data/Main/UserFormViewTemplate.txt
 data/Main/MyFeaturesWidget.txt
 data/Main/ChangesWidget.txt
+data/Main/CalendarWidget.txt
+data/Main/TopicTextWidget.txt
 data/System
 data/System/DashboardContrib.txt
+pub/System/DashboardContrib/inettuts.css
+pub/System/DashboardContrib/inettuts.js
+pub/System/DashboardContrib/inettuts.js.css
