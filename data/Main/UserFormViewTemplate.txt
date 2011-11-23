@@ -20,7 +20,7 @@ stealing from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/ for v0
                 <div class=\"widget-head\">
                     <h3>$item</h3>
                 </div>
-                <div class=\"widget-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt               </div>
+                <div class=\"foswikiTopic widget-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt               </div>
             </li>%TMPL:END%
 
 
@@ -66,6 +66,7 @@ stealing from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/ for v0
 }%%TMPL:P{
   "LIBJS" id="DashboardContrib/inettuts" FWSRC="" requires="JQueryPlugin/ui/jquery.ui.sortable"
 }%
+%JQREQUIRE{"loader"}%
     <div id="columns">
         <ul id="column1" class="column">%FORMAT{
   "%TMPL:P{"widgetsColumn1"}%"

@@ -6,12 +6,12 @@ body {font-size:0.8em; font-family:Arial,Verdana,Sans-Serif; nobackground: #000;
 a {nocolor:white;}
 
 /* Colors */
-.color-yellow  .widget-head{background:#f2bc00;}
-.color-red     .widget-head{background:#dd0000;}
-.color-blue    .widget-head{background:#148ea4;}
-.color-white   .widget-head{background:#dfdfdf;}
-.color-orange  .widget-head{background:#f66e00;}
-.color-green   .widget-head{background:#8dc100;}
+.color-yellow {  background:#f2bc00;}
+.color-red     {background:#dd0000;}
+.color-blue    {background:#148ea4;}
+.color-white   {background:#dfdfdf;}
+.color-orange  {background:#f66e00;}
+.color-green   {background:#8dc100;}
 .color-yellow  .widget-head h3,
 .color-white  .widget-head h3,
 .color-green .widget-head h3
@@ -66,9 +66,9 @@ NONOSVEN	#columns #column3 { background: url(img/column-bg-right.png) no-repeat 
 #columns .widget {
     margin: 20px 10px 0 10px;
     padding: 2px;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
     border: #ddd 1px solid;
 }
 #columns .widget .widget-head {
@@ -84,6 +84,7 @@ NONOSVEN	#columns #column3 { background: url(img/column-bg-right.png) no-repeat 
 }
 #columns .widget .widget-content {
     NObackground: #333 url(img/widget-content-bg.png) repeat-x;
+    background: white;
     padding: 0 5px;
     NOcolor: #DDD;
     -moz-border-radius-bottomleft: 2px;

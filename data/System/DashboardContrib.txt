@@ -42,6 +42,7 @@ __TODO__ howto mark certain widgets need certain plugins? (just use IF{}?)
 
 |  Author: | SvenDowideit |
 |  Copyright &copy;: | 2011 SvenDowideit@fosiki.com |
+|  Widget container: | uses [[http://james.padolsey.com/][James Padolsey's]] iGoogle widgets tutorial code (no license specified) |
 |  License: | GPL3 or later ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License 3]]) |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Version: | %$VERSION% |
