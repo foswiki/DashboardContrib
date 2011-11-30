@@ -11,15 +11,6 @@ data/Main/CalendarWidget.txt
 data/Main/TopicTextWidget.txt
 
 data/System/DashboardContrib.txt
-pub/System/DashboardContrib/inettuts.css
-pub/System/DashboardContrib/inettuts.js
-pub/System/DashboardContrib/inettuts.js.css
 
-pub/System/DashboardContrib/img/column-bg-left.png
-pub/System/DashboardContrib/img/inettuts.png
-pub/System/DashboardContrib/img/buttons.gif
-pub/System/DashboardContrib/img/widget-content-bg.png
-pub/System/DashboardContrib/img/head-bg.png
-pub/System/DashboardContrib/img/column-bg-right.png
 
 

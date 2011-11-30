@@ -5,89 +5,75 @@ user topic has a formfield of the form ''
 
 I wonder if the widgets should be in their own web?
 
-
-stealing from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/ for v0.2
-    <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
-    <script type="text/javascript" src="jquery-ui-personalized-1.6rc2.min.js"></script>
-
 }%
 
-%TMPL:DEF{"widgetsColumn1"}%MyFeatures,MyTasks%TMPL:END%
-%TMPL:DEF{"widgetsColumn2"}%Changes,PersonalInfo%TMPL:END%
+%TMPL:DEF{"widgetsColumn1"}%PersonalInfo,MyFeatures%TMPL:END%
+%TMPL:DEF{"widgetsColumn2"}%Changes,MyTasks%TMPL:END%
 %TMPL:DEF{"widgetsColumn3"}%Calendar,TopicText%TMPL:END%
 
-%TMPL:DEF{"widgets_boilerplate"}%            <li class=\"widget color-blue\" id=\"$item_$index\">
-                <div class=\"widget-head\">
-                    <h3>$item</h3>
-                </div>
-                <div class=\"foswikiTopic widget-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt               </div>
-            </li>%TMPL:END%
-
-
-%{
----------------------------------------------------
-	Macro for including JavaScript files from system paths
-	Takes as arguments:
-		- id
-		- file url, must NOT include .css extension
-		- requires
----------------------------------------------------
-}%
-%TMPL:DEF{"LIBJS"}%%ADDTOZONE{
-	"script"
-	id="%id%"
-	text="<script type='text/javascript' src='%PUBURLPATH%/%SYSTEMWEB%/%id%%FWSRC%.js'></script>"
-	requires="%requires%"
-}%%TMPL:END%%{
----------------------------------------------------
-	Macro for including CSS files from *system* paths
-	Takes as arguments:
-		- id
-		- file url, must NOT include .css extension
-		- requires
----------------------------------------------------
-}%%TMPL:DEF{"LIBCSS"}%%ADDTOZONE{
-	"head"
-	id="%id%"
-	text="<link rel='stylesheet' href='%PUBURLPATH%/%SYSTEMWEB%/%id%%FWSRC%.css' />"
-	requires="%requires%"
-}%%TMPL:END%
+%TMPL:DEF{"widgets_boilerplate"}%
+	<div class=\"portlet\">
+		<div class=\"portlet-header\">$item</div>
+		<div class=\"portlet-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt</div>
+	</div>%TMPL:END%
 
 %TMPL:DEF{"content"}%%TMPL:P{
-  "LIBCSS" id="DashboardContrib/inettuts" FWSRC=""
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.core" requires="JQUERYPLUGIN::FOSWIKI"
 }%%TMPL:P{
-  "LIBCSS" id="DashboardContrib/inettuts.js" FWSRC="" requires="DashboardContrib/inettuts"
-}%%TMPL:P{
-  "LIBJS" id="JQueryPlugin/ui/jquery.ui.widget" requires="JQUERYPLUGIN::FOSWIKI"
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.widget" requires="JQueryPlugin/ui/jquery.ui.core"
 }%%TMPL:P{
   "LIBJS" id="JQueryPlugin/ui/jquery.ui.mouse" requires="JQueryPlugin/ui/jquery.ui.widget"
 }%%TMPL:P{
   "LIBJS" id="JQueryPlugin/ui/jquery.ui.sortable" requires="JQueryPlugin/ui/jquery.ui.mouse"
-}%%TMPL:P{
-  "LIBJS" id="DashboardContrib/inettuts" FWSRC="" requires="JQueryPlugin/ui/jquery.ui.sortable"
 }%
 %JQREQUIRE{"loader"}%
-    <div id="columns">
-        <ul id="column1" class="column">%FORMAT{
-  "%TMPL:P{"widgetsColumn1"}%"
-  type="string"
-  format="%TMPL:P{"widgets_boilerplate"}%"
-  separator=""
-}%
-        </ul>
-        <ul id="column2" class="column">%FORMAT{
-  "%TMPL:P{"widgetsColumn2"}%"
-  type="string"
-  format="%TMPL:P{"widgets_boilerplate"}%"
-  separator=""
-}%
-        </ul>
-        <ul id="column3" class="column">%FORMAT{
-  "%TMPL:P{"widgetsColumn3"}%"
-  type="string"
-  format="%TMPL:P{"widgets_boilerplate"}%"
-  separator=""
-}%
-        </ul>
-    </div>
+	<style>
+	.column { width: 33%; float: left; padding-bottom: 100px; }
+	.portlet { margin: 0 1em 1em 0; }
+	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em;  }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; overflow: hidden; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+	</style>
+	<script>
+$(document).ready(function () {
+		$( ".column" ).sortable({
+			connectWith: ".column"
+		});
+		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+			.find( ".portlet-header" )
+				.addClass( "ui-widget-header ui-corner-all" )
+				.prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+				.end()
+			.find( ".portlet-content" );
+		$( ".portlet-header .ui-icon" ).click(function() {
+			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		});
+		$( ".column" ).disableSelection();
+	});
+	</script>
+<div class="demo">
+  <div class="column">%FORMAT{
+    "%TMPL:P{"widgetsColumn1"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+  <div class="column">%FORMAT{
+    "%TMPL:P{"widgetsColumn2"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+  <div class="column">%FORMAT{
+    "%TMPL:P{"widgetsColumn3"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+</div><!-- End demo -->
+<div class="demo-description">
+</div><!-- End demo-description -->
 %TMPL:END%

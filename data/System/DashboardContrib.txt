@@ -18,8 +18,7 @@ I've always wanted a user topic that was useful to me day to day, and this might
 ---++++ v0.1 - start
 done - ugly, hardcoded ViewTemplate that includes a number of Widgets topics
 ---++++ v0.2 - prettify and add more widgets
-done - using html, css and js from http://net.tutsplus.com/tutorials/javascript-ajax/inettuts/
-js is broken, but :)
+done - using html, css and js from jquery.org
 ---++++ v0.3 - add UI and backend to save user changes
 ---++++ v0.4 - add parameters and options the user can set for each widget.
 ---++++ more todos 
@@ -42,7 +41,6 @@ __TODO__ howto mark certain widgets need certain plugins? (just use IF{}?)
 
 |  Author: | SvenDowideit |
 |  Copyright &copy;: | 2011 SvenDowideit@fosiki.com |
-|  Widget container: | uses [[http://james.padolsey.com/][James Padolsey's]] iGoogle widgets tutorial code (no license specified) |
 |  License: | GPL3 or later ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License 3]]) |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Version: | %$VERSION% |
