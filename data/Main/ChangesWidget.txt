@@ -1,3 +1,4 @@
+%STARTSECTION{"widget-title"}%Site Changes%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
 %TABLE{sort="on" initsort="1" initdirection="up" headerrows="1" tablewidth="100%"}%
 %SEARCH{

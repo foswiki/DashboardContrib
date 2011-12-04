@@ -1,3 +1,4 @@
+%STARTSECTION{"widget-title"}%My Info%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%%INCLUDE{
   "PersonalInfo" 
   section="personalInfo"

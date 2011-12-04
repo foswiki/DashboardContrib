@@ -1,3 +1,4 @@
+%STARTSECTION{"widget-title"}%My Features%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
 | *Topic Summary CurrentState* |
 %SEARCH{ 
@@ -8,6 +9,6 @@
   nosearch="on" 
   pager="on"
   pagesize="5"
-  format="| [[$topic]]: $formfield(TopicSummary) : <nop>$formfield(CurrentState) |"
+  format="| [[$web.$topic]]: $formfield(TopicSummary) : <nop>$formfield(CurrentState) |"
   NOfooter="| | | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt |  | $n "
 }%%ENDSECTION{"widget"}%

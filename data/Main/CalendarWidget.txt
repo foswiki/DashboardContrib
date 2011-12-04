@@ -1,1 +1,3 @@
+%STARTSECTION{"widget-title"}%Calendar%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%%CALENDAR{month="-1"}%%CALENDAR{}%%CALENDAR{month="+1"}%%ENDSECTION{"widget"}%
+

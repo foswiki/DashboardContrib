@@ -1,3 +1,4 @@
+%STARTSECTION{"widget-title"}%My Tasks%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
 %SEARCH{
       type="query"

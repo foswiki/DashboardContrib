@@ -1,3 +1,4 @@
+%STARTSECTION{"widget-title"}%Topic text%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
 %INCLUDE{%BASEWEB%.%BASETOPIC%}%
 %ENDSECTION{"widget"}%

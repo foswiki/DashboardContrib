@@ -1,20 +1,29 @@
 %TMPL:INCLUDE{view}%
 
+
+
 %{
 user topic has a formfield of the form ''
 
 I wonder if the widgets should be in their own web?
 
+%STARTSECTION{"widget-title"}%Dashboard Contrib Help%ENDSECTION{"widget-title"}%
+%STARTSECTION{"widget"}%the drag and drop functionality is currently not persistent, 
+but you can set what widgets to show using the =WIDGETSCOLUMN1=, =WIDGETSCOLUMN2=, =WIDGETSCOLUMN3= settings.
+%ENDSECTION{"widget"}%
+
+
 }%
 
-%TMPL:DEF{"widgetsColumn1"}%PersonalInfo,MyFeatures%TMPL:END%
-%TMPL:DEF{"widgetsColumn2"}%Changes,MyTasks%TMPL:END%
-%TMPL:DEF{"widgetsColumn3"}%Calendar,TopicText%TMPL:END%
+%TMPL:DEF{"widgetsColumn1"}%Main.PersonalInfoWidget,Main.MyFeaturesWidget%TMPL:END%
+%TMPL:DEF{"widgetsColumn2"}%Main.ChangesWidget,Main.MyTasksWidget%TMPL:END%
+%TMPL:DEF{"widgetsColumn3"}%Main.UserFormViewTemplate,Main.CalendarWidget,Main.TopicTextWidget%TMPL:END%
+
 
 %TMPL:DEF{"widgets_boilerplate"}%
 	<div class=\"portlet\">
-		<div class=\"portlet-header\">$item</div>
-		<div class=\"portlet-content\">$percntINCLUDE{\"$itemWidget\" index=\"$index\"}$percnt</div>
+		<div class=\"portlet-header\">$percntINCLUDE{\"$item\" section=\"widget-title\" index=\"$index\" warn=\"$item\"}$percnt</div>
+		<div class=\"portlet-content\">$percntINCLUDE{\"$item\" section=\"widget\" index=\"$index\"}$percnt</div>
 	</div>%TMPL:END%
 
 %TMPL:DEF{"content"}%%TMPL:P{
@@ -30,7 +39,7 @@ I wonder if the widgets should be in their own web?
 	<style>
 	.column { width: 33%; float: left; padding-bottom: 100px; }
 	.portlet { margin: 0 1em 1em 0; }
-	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em;  }
+	.portlet-header { font-weight: bold; margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em;  }
 	.portlet-header .ui-icon { float: right; }
 	.portlet-content { padding: 0.4em; overflow: hidden; }
 	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
@@ -56,19 +65,23 @@ $(document).ready(function () {
 	</script>
 <div class="demo">
   <div class="column">%FORMAT{
-    "%TMPL:P{"widgetsColumn1"}%"
+    "%IF{
+      "defined WIDGETSCOLUMN1" 
+      then="%WIDGETSCOLUMN1%" 
+      else="%TMPL:P{"widgetsColumn1"}%"
+    }%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
     separator=""
   }%</div>
   <div class="column">%FORMAT{
-    "%TMPL:P{"widgetsColumn2"}%"
+    "%IF{"defined WIDGETSCOLUMN2" then="%WIDGETSCOLUMN2%" else="%TMPL:P{"widgetsColumn2"}%"}%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
     separator=""
   }%</div>
   <div class="column">%FORMAT{
-    "%TMPL:P{"widgetsColumn3"}%"
+    "%IF{"defined WIDGETSCOLUMN3" then="%WIDGETSCOLUMN3%" else="%TMPL:P{"widgetsColumn3"}%"}%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
     separator=""
