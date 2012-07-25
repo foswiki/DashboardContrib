@@ -1,0 +1,116 @@
+%META:TOPICINFO{author="SvenDowideit" comment="save topic" date="1341201909" format="1.1" reprev="3" version="3"}%
+%META:TOPICPARENT{name="WikiDashboardOverview"}%
+%{
+This App does not really need 'installing' to test it here. it should work on its own, by adding a 
+
+   * Local VIEW_TEMPLATE=%WIDGETWEB%.WikiDashboard
+
+setting to your user topic. (replacing the PersonalInfoAddin setting)
+
+To see it in action, goto Main.SvenDowideit
+
+<verbatim>
+}%%TMPL:INCLUDE{view}%
+
+
+
+%{
+user topic has a formfield of the form ''
+
+I wonder if the widgets should be in their own web?
+
+%STARTSECTION{"widget-title"}%Dashboard Contrib Help%ENDSECTION{"widget-title"}%
+%STARTSECTION{"widget"}%the drag and drop functionality is currently not persistent, 
+but you can set what widgets to show using the =WIDGETSCOLUMN1=, =WIDGETSCOLUMN2=, =WIDGETSCOLUMN3= settings.
+
+for example, I set the following in my 'personal settings' on my topic to show my details only if the topic is not viewed by me:
+
+
+   * <nop>Local WIDGETSCOLUMN1 = %<nop>IF{"$WIKINAME != 'SvenDowideit'" then="%WIDGETWEB%.PersonalInfoWidget,"}%%WIDGETWEB%.MyFeaturesWidget
+
+%ENDSECTION{"widget"}%
+
+}%
+
+%TMPL:DEF{"widgetsColumn1"}%%WIDGETWEB%.PersonalInfoWidget,%WIDGETWEB%.MyFeaturesWidget%TMPL:END%
+%TMPL:DEF{"widgetsColumn2"}%%WIDGETWEB%.ChangesWidget,%WIDGETWEB%.MyTasksWidget%TMPL:END%
+%TMPL:DEF{"widgetsColumn3"}%%SYSTEMWEB%.WikiDashboard%IF{"context CalendarPluginEnabled" then=",%WIDGETWEB%.CalendarWidget"}%,%WIDGETWEB%.TopicTextWidget%TMPL:END%
+
+%TMPL:DEF{"widgets_boilerplate"}%
+	<div class=\"portlet\">
+		<div class=\"portlet-header\">$percntINCLUDE{\"$item\" section=\"widget-title\" index=\"$index\" warn=\"$item\"}$percnt</div>
+		<div class=\"portlet-content\">$percntINCLUDE{\"$item\" section=\"widget\" index=\"$index\"}$percnt</div>
+	</div>%TMPL:END%
+
+%TMPL:DEF{"widgets_boilerplate__jqLoad"}%
+	<div class=\"portlet\">%JQREQUIRE{"loader"}%
+		<div class=\"portlet-header\">
+<div item=\"title$index\" class=\"jqLoader {url:'%SCRIPTURL{view}%/?defaultweb=%BASEWEB%;topic=$item;section=widget-title;index=$index;skin=text'}\"></div>
+                </div>
+		<div class=\"portlet-content\">
+<div item=\"content$index\" class=\"jqLoader {url:'%SCRIPTURL{view}%/?defaultweb=%BASEWEB%;topic=$item;section=widget;index=$index;skin=text'}\"></div>
+                </div>
+	</div>%TMPL:END%
+
+%TMPL:DEF{"content"}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.core" requires="JQUERYPLUGIN::FOSWIKI"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.widget" requires="JQueryPlugin/ui/jquery.ui.core"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.mouse" requires="JQueryPlugin/ui/jquery.ui.widget"
+}%%TMPL:P{
+  "LIBJS" id="JQueryPlugin/ui/jquery.ui.sortable" requires="JQueryPlugin/ui/jquery.ui.mouse"
+}%
+	<style>
+	.column { width: 33%; float: left; padding-bottom: 100px; }
+	.portlet { margin: 0 1em 1em 0; }
+	.portlet-header { font-weight: bold; margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em;  }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; overflow: hidden; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+	</style>
+	<script>
+$(document).ready(function () {
+		$( ".column" ).sortable({
+			connectWith: ".column"
+		});
+		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+			.find( ".portlet-header" )
+				.addClass( "ui-widget-header ui-corner-all" )
+				.prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+				.end()
+			.find( ".portlet-content" );
+		$( ".portlet-header .ui-icon" ).click(function() {
+			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		});
+		$( ".column" ).disableSelection();
+	});
+	</script>
+<div class="demo">
+  <div class="column">%FORMAT{
+    "%IF{"defined WIDGETSCOLUMN1" then="%WIDGETSCOLUMN1%" else="%TMPL:P{"widgetsColumn1"}%"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+  <div class="column">%FORMAT{
+    "%IF{"defined WIDGETSCOLUMN2" then="%WIDGETSCOLUMN2%" else="%TMPL:P{"widgetsColumn2"}%"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+  <div class="column">%FORMAT{
+    "%IF{"defined WIDGETSCOLUMN3" then="%WIDGETSCOLUMN3%" else="%TMPL:P{"widgetsColumn3"}%"}%"
+    type="string"
+    format="%TMPL:P{"widgets_boilerplate"}%"
+    separator=""
+  }%</div>
+</div><!-- End demo -->
+<div class="demo-description">
+</div><!-- End demo-description -->
+%TMPL:END%
+%{
+</verbatim>
+}%

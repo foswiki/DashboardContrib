@@ -1,3 +1,4 @@
+%META:TOPICINFO{author="SvenDowideit" date="1322656097" format="1.1" version="1"}%
+%META:TOPICPARENT{name="WikiDashboardOverview"}%
 %STARTSECTION{"widget-title"}%Calendar%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%%CALENDAR{month="-1"}%%CALENDAR{}%%CALENDAR{month="+1"}%%ENDSECTION{"widget"}%
-

@@ -1,5 +1,13 @@
+%META:TOPICINFO{author="SvenDowideit" comment="reprev" date="1322657372" format="1.1" reprev="1" version="1"}%
+%META:TOPICPARENT{name="WikiDashboardOverview"}%
 %STARTSECTION{"widget-title"}%My Info%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%%INCLUDE{
-  "PersonalInfo" 
+  "Main.PersonalInfo" 
   section="personalInfo"
-}%%ENDSECTION{"widget"}%
+}%
+<style>
+.pIparagraphWithImageLeftText {
+clear: both;
+margin-left: 0px;
+padding-left: 5px;
+}</style>%ENDSECTION{"widget"}%

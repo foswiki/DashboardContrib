@@ -35,6 +35,17 @@ The ViewTemplate iterates over the list of widgets and adds them to the topic.
 __TODO__ howto mark certain widgets need certain plugins? (just use IF{}?)
 
 ---++ Installation
+
+<form name="new" action="%SCRIPTURLPATH{save}%/%USERSWEB%/%WIKINAME%" method="post">
+<input type="hidden" name="Local+VIEW_TEMPLATE" value="%SYSTEMWEB%.WikiDashboard" />
+<input type="hidden" name="Local+WIDGETWEB" value="Main" />
+<input type="submit" value="Add the Dashboard to your user topic %NOP%%WIKINAME%" %IF{
+                "context 'authenticated'" 
+                else="disabled"
+        }%/>
+</form>
+
+
 %$INSTALL_INSTRUCTIONS%
 
 ---++ Info

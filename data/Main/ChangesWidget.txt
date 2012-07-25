@@ -1,6 +1,7 @@
+%META:TOPICINFO{author="SvenDowideit" comment="reprev" date="1322657578" format="1.1" reprev="1" version="1"}%
+%META:TOPICPARENT{name="WikiDashboardOverview"}%
 %STARTSECTION{"widget-title"}%Site Changes%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
-%TABLE{sort="on" initsort="1" initdirection="up" headerrows="1" tablewidth="100%"}%
 %SEARCH{
     "info.author!='WikiGnome'"
     type="query"
@@ -12,8 +13,8 @@
     excludetopic="WebStatistics"
     reverse="on"
     order="modified"
-    format="| [[%SCRIPTURLPATH{"view"}%/$web/$topic#foo_$rev][<nop>$web.$percentFORMFIELD{$quotSummary$quot topic=$quot$web.$topic$quot format=$quot$topic: $value$quot default=$quot$topic$quot alttext=$quot$topic$quot}$percent]] | $date [[$wikiusername][$wikiname]] | "
-    header="| *%MAKETEXT{"Topic"}%* | *%MAKETEXT{"Last editor"}%* |"
+    format="| [[%SCRIPTURLPATH{"view"}%/$web/$topic#foo_$rev][<nop>$web.$percentFORMFIELD{$quotSummary$quot topic=$quot$web.$topic$quot format=$quot$topic: $value$quot default=$quot$topic$quot alttext=$quot$topic$quot}$percent]]  $date [[$wikiusername][$wikiname]] | "
+    header=""
     nofooter="$n---$n $pager $n----$n"
     pager="on"
     groupby="none"

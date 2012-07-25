@@ -1,14 +1,15 @@
+%META:TOPICINFO{author="SvenDowideit" date="1322661704" format="1.1" version="2"}%
+%META:TOPICPARENT{name="WikiDashboardOverview"}%
 %STARTSECTION{"widget-title"}%My Features%ENDSECTION{"widget-title"}%
 %STARTSECTION{"widget"}%
 | *Topic Summary CurrentState* |
 %SEARCH{ 
-  "form.name='ChangeProposalForm' AND CommittedDeveloper~'*%BASETOPIC%*'"  
+  "form.name='ChangeProposalForm' AND CommittedDeveloper~'*%BASETOPIC%*' AND CurrentState != 'MergedToCore'"  
   web="Development"
   casesensitive="on" 
   type="query" 
   nosearch="on" 
   pager="on"
   pagesize="5"
-  format="| [[$web.$topic]]: $formfield(TopicSummary) : <nop>$formfield(CurrentState) |"
-  NOfooter="| | | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt | $percntCALC{\"$COUNTITEMS( $LIST(R2:C$COLUMN()..R$ROW(-1):C$COLUMN()))\"}$percnt |  | $n "
+  format="| [[$web.$topic][$topic]]: $formfield(TopicSummary) : <nop>$formfield(CurrentState) |"
 }%%ENDSECTION{"widget"}%
