@@ -77,11 +77,18 @@ $(document).ready(function () {
 			handle: ".portlet-header",
 		    receive: function(event, ui) {
                     //alert("[" + this.id + "] received [" + ui.item[0].id + "] from [" + ui.sender.attr("id") + "]");
-                    var from = ui.sender[0].id;
+                    var from = 'Local+'+ui.sender[0].id;
                     var from_list = $(ui.sender[0]).sortable('toArray').toString();
-                    var to = this.id;
+                    var to = 'Local+'+this.id;
                     var to_list = $(this).sortable('toArray').toString();
-                    //foswiki.save({'web': web, 'topic': topic, 'Local+'+from: from_list, 'Local+'+to: to_list});
+                    
+                    var data = {};
+                    data.web = foswiki.getPreference('WEB');
+                    data.topic = foswiki.getPreference('TOPIC');
+                    data[from] = from_list;
+                    data[to] = to_list;
+                    
+                    foswiki.post( 'save', data );
                 }
 		});
 		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
