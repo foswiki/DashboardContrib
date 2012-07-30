@@ -9,7 +9,7 @@
     nototal="on"
     pagesize="%URLPARAM{"limit" default="5"}%"
     pager="on"
-    web="%URLPARAM{"web" default="Main,System,Sandbox"}%"
+    web="%URLPARAM{"web" default="all"}%"
     excludetopic="WebStatistics"
     reverse="on"
     order="modified"
@@ -20,4 +20,5 @@
     groupby="none"
     date="%URLPARAM{"since" default="P1d/$now"}%"
     zeroresults="<p>%MAKETEXT{"No changes"}%</p>"
-}%%ENDSECTION{"widget"}%
+}%
+%ENDSECTION{"widget"}%

@@ -37,13 +37,13 @@ for example, I set the following in my 'personal settings' on my topic to show m
 %TMPL:DEF{"widgetsColumn3"}%%SYSTEMWEB%.WikiDashboard%IF{"context CalendarPluginEnabled" then=",%WIDGETWEB%.CalendarWidget"}%,%WIDGETWEB%.TopicTextWidget%TMPL:END%
 
 %TMPL:DEF{"widgets_boilerplate"}%
-	<div class=\"portlet\">
+	<div class=\"portlet\" id=\"$item\">
 		<div class=\"portlet-header\">$percntINCLUDE{\"$item\" section=\"widget-title\" index=\"$index\" warn=\"$item\"}$percnt</div>
 		<div class=\"portlet-content\">$percntINCLUDE{\"$item\" section=\"widget\" index=\"$index\"}$percnt</div>
 	</div>%TMPL:END%
 
 %TMPL:DEF{"widgets_boilerplate__jqLoad"}%
-	<div class=\"portlet\">%JQREQUIRE{"loader"}%
+	<div class=\"portlet {id: $item}\" id=\"$item\">%JQREQUIRE{"loader"}%
 		<div class=\"portlet-header\">
 <div item=\"title$index\" class=\"jqLoader {url:'%SCRIPTURL{view}%/?defaultweb=%BASEWEB%;topic=$item;section=widget-title;index=$index;skin=text'}\"></div>
                 </div>
@@ -66,42 +66,55 @@ for example, I set the following in my 'personal settings' on my topic to show m
 	.portlet { margin: 0 1em 1em 0; }
 	.portlet-header { font-weight: bold; margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em;  }
 	.portlet-header .ui-icon { float: right; }
-	.portlet-content { padding: 0.4em; overflow: hidden; }
+	.portlet-content { padding: 0.4em; overflow: auto; }
 	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
 	.ui-sortable-placeholder * { visibility: hidden; }
 	</style>
 	<script>
 $(document).ready(function () {
 		$( ".column" ).sortable({
-			connectWith: ".column"
+			connectWith: ".column",
+			handle: ".portlet-header",
+		    receive: function(event, ui) {
+                    //alert("[" + this.id + "] received [" + ui.item[0].id + "] from [" + ui.sender.attr("id") + "]");
+                    var from = ui.sender[0].id;
+                    var from_list = $(ui.sender[0]).sortable('toArray').toString();
+                    var to = this.id;
+                    var to_list = $(this).sortable('toArray').toString();
+                    //foswiki.save({'web': web, 'topic': topic, 'Local+'+from: from_list, 'Local+'+to: to_list});
+                }
 		});
 		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
 			.find( ".portlet-header" )
 				.addClass( "ui-widget-header ui-corner-all" )
 				.prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
-				.end()
-			.find( ".portlet-content" );
-		$( ".portlet-header .ui-icon" ).click(function() {
+    			.prepend( "<span class='ui-icon ui-icon-wrench'></span>")
+				.end();
+		$( ".portlet-header .ui-icon-minusthick" ).click(function() {
 			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
 			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		});
+		$( ".portlet-header .ui-icon-wrench" ).click(function() {
+		    var data = $( this ).parents( ".portlet:first" )[0].attributes['id'].value;
 		});
 		$( ".column" ).disableSelection();
 	});
 	</script>
+%JQREQUIRE{"ui::dialog"}%
 <div class="demo">
-  <div class="column">%FORMAT{
+  <div class="column" id="WIDGETSCOLUMN1">%FORMAT{
     "%IF{"defined WIDGETSCOLUMN1" then="%WIDGETSCOLUMN1%" else="%TMPL:P{"widgetsColumn1"}%"}%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
     separator=""
   }%</div>
-  <div class="column">%FORMAT{
+  <div class="column" id="WIDGETSCOLUMN2">%FORMAT{
     "%IF{"defined WIDGETSCOLUMN2" then="%WIDGETSCOLUMN2%" else="%TMPL:P{"widgetsColumn2"}%"}%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
     separator=""
   }%</div>
-  <div class="column">%FORMAT{
+  <div class="column" id="WIDGETSCOLUMN3">%FORMAT{
     "%IF{"defined WIDGETSCOLUMN3" then="%WIDGETSCOLUMN3%" else="%TMPL:P{"widgetsColumn3"}%"}%"
     type="string"
     format="%TMPL:P{"widgets_boilerplate"}%"
