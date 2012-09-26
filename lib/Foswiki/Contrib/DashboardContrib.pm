@@ -34,7 +34,7 @@ our $VERSION = '$Rev$';
 our $RELEASE = '0.2';
 
 our $SHORTDESCRIPTION =
-  'add a configurable widget based dashboard to the User\'s homepage;
+  "add a configurable widget based dashboard to the User's homepage";
 
 1;
 
